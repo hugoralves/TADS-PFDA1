@@ -1,0 +1,129 @@
+Professor, uma dúvida. Na hora que eu tava fazendo esse primeiro exercício, pra deixar mais divertido eu tinha pedido pro usuário o login dele. E aí tinha colocado: 
+
+				printf("\t\t BEM VINDO AO BANCO DO IF \n\n Para continuar informe seu login: "); 
+				scanf("%c", &login);
+
+Mas antes, claro, eu tinha declarado a variável: 
+				char login[20]
+
+E aí começou um bug. Na hora que eu pedia o login pro usuário, se fosse digitado qualquer palavra, ou qualquer número com mais de um dígito bugava. 
+Se eu digitasse um nome, o programa na hora do switch pulava direto pra parte "Ops, não identificamos essa opção!"
+Se eu digitasse um número, por exemplo 12, o programa na hora do switch já marcava como selecionado "Operação: Depósito"
+Se o número fosse 11, o programa na hora do switch já marcava como selecionado "Operação: Saldo"
+
+Ele só funcionava quando eu digitava apenas um número. 
+Depois que troquei por int, pra continuar pedindo algo antes da senha pro usuário, aí sim o programa rodou normal. 
+
+Se ficou meio confuso (acredito que sim kk), eu explico depois da aula na quarta, professor! 
+
+
+
+==================================================================================================================================
+								***EXERCÍCIO 1***
+
+#include <conio.h> 
+#include <stdlib.h>
+#include <stdio.h>
+#include <locale.h>
+
+//O programa dever ler a senha do usuário e mostrá-la em asterisco 
+
+int main()
+{
+	setlocale(LC_ALL, "Portuguese");
+	
+	int conta,d1, d2, d3, d4, opc;
+	
+	printf("\t\t BEM VINDO AO BANCO DO IF \n\n Para continuar informe sua conta: "); 
+	scanf("%i", &conta); 
+	
+	printf("\n\nAgora você irá informar a sua senha \n*A mesma senha numérica de quatro dígitos utilizada também no seu cartão\n\nSenha: "); 
+	d1 = getch(); //Vai ocultar o digito
+	printf("*");  //Vai mostrar o asterisco no lugar do digito
+	d2 = getch(); 
+	printf("*");
+	d3 = getch(); 
+	printf("*");
+	d4 = getch(); 
+	printf("*");
+	
+	if(d1 =='1' && d2 == '3' && d3 == '1' && d4 == '0') //Vai conferir se a senha está correta 
+	{
+		printf("\n\n\t\t Seja bem-vindo! \n\n"); 
+		printf("1 - Consultar saldo\n");
+		printf("2 - Realizar depósito\n"); 
+		printf("3 - Realizar pagamentos\n"); 
+		printf("4 - Fazer transferência\n"); 
+		printf("5 - Sair "); 
+		printf("\n\nO que você deseja fazer? Só escolher uma das opções. ");
+		scanf("%i", &opc); 
+		
+		switch(opc)
+		{
+			case 1: printf("Operação: Saldo"); 
+					break; 
+			case 2: printf("Operação: Depósito");
+					break;
+			case 3: printf("Operação: Pagamentos"); 
+					break;
+			case 4: printf("Operação: Transferência"); 
+					break;
+			case 5: printf("Encerrando operações..."); 
+					break;
+			default: printf("Ops, não identificamos essa opção!");
+					break;
+		}
+		
+	}
+	else
+	{
+		printf("\n\nSENHA INCORRETA!"); 
+	}
+	
+
+	getch(); 
+}
+
+===============================================================================================================================================
+
+								***ExERCÍCIO 2***
+
+#include <conio.h> 
+#include <stdlib.h>
+#include <stdio.h>
+#include <locale.h>
+
+// O programa vai estipular o peso ideal de um homem e de uma mulher dada sua altura 
+
+int main()
+{
+	setlocale(LC_ALL, "Portuguese");
+	 
+	float alt, hom, mul;
+	int sex; 
+	
+	printf("Para saber o seu peso ideal informe sua altura: \n\n");  
+	scanf("%f", &alt); 
+	
+	printf("\n\nQual o seu sexo? \n\n 1 - Masculino\n 2 - Feminino \n\n");
+	scanf("%i", &sex); 
+	
+	switch(sex)
+	{
+		case 1 : printf("\n\nMASCULINO");
+	    		 hom = 72.7 * alt - 58; 	 
+				 printf("\nO seu peso ideal é %.3f Kg", hom); 
+				 break;
+
+		case 2 : printf("\n\nFEMININO");
+				 mul = 62.1 * alt - 44.7; 
+				 printf("\nO seu peso ideal é %.3f Kg", mul);
+				 break; 
+
+		default : printf("\nOps, não identificamos essa opção :(");
+    }
+	
+	getch();
+}
+
+
